@@ -5,6 +5,7 @@ import speech_recognition as sr
 import pyttsx3
 import schedule
 import webbrowser
+import re
 
 class SpeechRecognitionApp:
     def __init__(self):
@@ -25,12 +26,12 @@ class SpeechRecognitionApp:
 
     def schedule_meeting(self):
         # Schedule displaying the alert message after 1 minute
-        self.root.after(1000 * 60, self.display_alert_message) # Run after 1 minute
+        self.root.after(1000 * 5, self.display_alert_message) # Run after 1 minute
 
         #schedule.every().day.at("9:41").do(self.display_alert_message)
 
         # Schedule joining the meeting after 2 minutes
-        self.root.after(1000 * 120, self.join_meeting) # Run after 2 minutes
+        self.root.after(1000 * 10, self.join_meeting) # Run after 2 minutes
 
         #schedule.every().day.at("9:42").do(self.join_meeting)
 
@@ -47,11 +48,8 @@ class SpeechRecognitionApp:
 
     def join_meeting(self):
         # Replace these values with your own meeting ID and password
-        meeting_id = "240 574 856 395"
-        meeting_pass = "uX6xpT"
-
         # Construct the meeting URL with the ID and password
-        meeting_url = f"https://teams.live.com/meet/{meeting_id}?pwd={meeting_pass}"
+        meeting_url = f"https://teams.microsoft.com/l/meetup-join/19%3alI3aonmkd0o-zAPvw9-n97kt8s5pwGOEgaHdYIUJKm81%40thread.tacv2/1707245694367?context=%7b%22Tid%22%3a%22e741d71c-c6b6-47b0-803c-0f3b32b07556%22%2c%22Oid%22%3a%2206e8a022-f5f7-4591-868a-1f2845b37ea4%22%7d"
 
         print(f"Opening the meeting URL: {meeting_url}")
 
@@ -78,7 +76,7 @@ class SpeechRecognitionApp:
 
         self.root.destroy()  # Close the GUI
 
-    def listen_for_response(self, timeout=10):
+    def listen_for_response(self, timeout=15):
         with sr.Microphone() as source:
             self.recognizer.adjust_for_ambient_noise(source)
             print("Listening for response...")
