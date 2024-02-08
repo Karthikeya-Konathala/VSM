@@ -1,4 +1,4 @@
-'''import tkinter as tk
+import tkinter as tk
 from tkinter import scrolledtext
 import threading
 import speech_recognition as sr
@@ -25,10 +25,14 @@ class SpeechRecognitionApp:
 
     def schedule_meeting(self):
         # Schedule displaying the alert message after 1 minute
-        schedule.every().day.at("16:01").do(self.display_alert_message)
+        self.root.after(1000 * 60, self.display_alert_message) # Run after 1 minute
+
+        #schedule.every().day.at("9:41").do(self.display_alert_message)
 
         # Schedule joining the meeting after 2 minutes
-        schedule.every().day.at("16:02").do(self.join_meeting)
+        self.root.after(1000 * 120, self.join_meeting) # Run after 2 minutes
+
+        #schedule.every().day.at("9:42").do(self.join_meeting)
 
         # Run the pending tasks
         while True:
@@ -43,8 +47,8 @@ class SpeechRecognitionApp:
 
     def join_meeting(self):
         # Replace these values with your own meeting ID and password
-        meeting_id = "956 827 639 964 3"
-        meeting_pass = "29dpKH"
+        meeting_id = "240 574 856 395"
+        meeting_pass = "uX6xpT"
 
         # Construct the meeting URL with the ID and password
         meeting_url = f"https://teams.live.com/meet/{meeting_id}?pwd={meeting_pass}"
@@ -105,4 +109,4 @@ class SpeechRecognitionApp:
 
 if __name__ == "__main__":
     app = SpeechRecognitionApp()
-    app.run()'''
+    app.run()
