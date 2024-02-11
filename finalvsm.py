@@ -105,3 +105,5 @@ while True:
         speak(f"Thank you for the updates, {name}. If you need further assistance, feel free to reach out. End of Scrum meeting.")
         print("End of Scrum meeting.")
         break
+
+
